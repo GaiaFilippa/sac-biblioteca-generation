@@ -15,8 +15,6 @@ namespace sac_biblioteca_generation.Models
         [Required(ErrorMessage = "Il campo è obbligatorio")]
         public string Descrizione { get; set; }
 
-        [StringLength(100, ErrorMessage = "Il campo può contenere solo 100 caratteri")]
-        public string Autore { get; set; }
 
         public DateTime Prestito { get; set; }
 
@@ -29,6 +27,9 @@ namespace sac_biblioteca_generation.Models
 
         public int GenreId { get; set; }
         public BookGenre Genre { get; set; }
+
+        public int AuthorsId { get; set;}
+        public Authors Authors { get; set; }
 
         public Book()
         {

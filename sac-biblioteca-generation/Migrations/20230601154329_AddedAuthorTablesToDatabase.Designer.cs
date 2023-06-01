@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using sac_biblioteca_generation.Database;
 
@@ -11,9 +12,11 @@ using sac_biblioteca_generation.Database;
 namespace sac_biblioteca_generation.Migrations
 {
     [DbContext(typeof(BookShopContext))]
-    partial class BookShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230601154329_AddedAuthorTablesToDatabase")]
+    partial class AddedAuthorTablesToDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +56,7 @@ namespace sac_biblioteca_generation.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthorsId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Descrizione")
@@ -80,7 +83,7 @@ namespace sac_biblioteca_generation.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorsId");
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("GenreId");
 
@@ -107,9 +110,9 @@ namespace sac_biblioteca_generation.Migrations
 
             modelBuilder.Entity("sac_biblioteca_generation.Models.Book", b =>
                 {
-                    b.HasOne("sac_biblioteca_generation.Models.Authors", "Authors")
+                    b.HasOne("sac_biblioteca_generation.Models.Authors", "Author")
                         .WithMany("Books")
-                        .HasForeignKey("AuthorsId")
+                        .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -119,7 +122,7 @@ namespace sac_biblioteca_generation.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Authors");
+                    b.Navigation("Author");
 
                     b.Navigation("Genre");
                 });

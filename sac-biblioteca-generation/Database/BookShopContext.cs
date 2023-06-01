@@ -7,6 +7,7 @@ namespace sac_biblioteca_generation.Database
     {       
         public DbSet<Book> Books { get; set; }
         public DbSet<BookGenre> Genre { get; set; }
+        public DbSet<Authors> Authors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
