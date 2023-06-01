@@ -15,12 +15,17 @@ namespace sac_biblioteca_generation.Models
         [Required(ErrorMessage = "Il campo è obbligatorio")]
         public string Descrizione { get; set; }
 
+        [StringLength(100, ErrorMessage = "Il campo può contenere solo 100 caratteri")]
+        public string Autore { get; set; }
+
         public DateTime Prestito { get; set; }
 
         [Required(ErrorMessage = "Il campo è obbligatorio")]
         [Url(ErrorMessage = "L'url inserito non è valido")]
         public string UrlImmagine { get; set; }
 
+        [Required(ErrorMessage = "Il campo è obbligatorio")]
+        public bool Disponibilità { get; set; }
 
         public int GenreId { get; set; }
         public BookGenre Genre { get; set; }

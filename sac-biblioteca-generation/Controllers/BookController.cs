@@ -21,12 +21,12 @@ namespace sac_biblioteca_generation.Controllers
 
         
          
-         [HttpGet] 
+        [HttpGet] 
         public IActionResult BookDetails(int id)
         {
             using (BookShopContext db = new BookShopContext())
             {
-                Book? book = db.Books.Where(book => book.Id == id).FirstOrDefault(); 
+                Book? book = db.Books.Where(book => book.Id == id).Include(p => p.Genre.Nome).FirstOrDefault(); 
                 if(book != null) 
                 {
                     return View("BookDetails",  book);
